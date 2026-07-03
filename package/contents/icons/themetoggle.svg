@@ -1,0 +1,20 @@
+<!--
+SPDX-FileCopyrightText: 2026 Yakir Rettig
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Dark full circle (base for right half) -->
+  <circle cx="32" cy="32" r="30" fill="#1a1a2e"/>
+  <!-- Light left half -->
+  <path d="M32 2 A30 30 0 0 0 32 62 Z" fill="#f5f5f5"/>
+  <!-- Dark bump: full circle, only left half visible over the light background -->
+  <circle cx="32" cy="17" r="15" fill="#1a1a2e"/>
+  <!-- Light bump: full circle, only right half visible over the dark background -->
+  <circle cx="32" cy="47" r="15" fill="#f5f5f5"/>
+  <!-- Light eye inside the dark upper bump (offset left so it sits inside the visible half) -->
+  <circle cx="28" cy="17" r="5" fill="#f5f5f5"/>
+  <!-- Dark eye inside the light lower bump (offset right so it sits inside the visible half) -->
+  <circle cx="36" cy="47" r="5" fill="#1a1a2e"/>
+  <!-- Border -->
+  <circle cx="32" cy="32" r="30" fill="none" stroke="#888" stroke-width="1.5"/>
+</svg>

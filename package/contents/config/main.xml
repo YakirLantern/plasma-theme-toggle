@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-FileCopyrightText: 2026 Yakir Rettig
+SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+
+    <group name="General">
+        <entry name="lightTheme" type="String">
+            <label>Look-and-Feel package id for the light state.</label>
+            <default>org.kde.breeze.desktop</default>
+        </entry>
+        <entry name="darkTheme" type="String">
+            <label>Look-and-Feel package id for the dark state.</label>
+            <default>org.kde.breezedark.desktop</default>
+        </entry>
+        <entry name="clickAction" type="Enum">
+            <label>What clicking the widget does.</label>
+            <choices>
+                <choice name="Toggle"/>
+                <choice name="Menu"/>
+                <choice name="Cycle"/>
+            </choices>
+            <default>Toggle</default>
+        </entry>
+        <entry name="iconStyle" type="Enum">
+            <label>Which icon the panel widget shows.</label>
+            <choices>
+                <choice name="FollowScheme"/>
+                <choice name="SunMoon"/>
+                <choice name="YinYang"/>
+            </choices>
+            <default>FollowScheme</default>
+        </entry>
+        <entry name="lastAppliedWasDark" type="Bool">
+            <label>Internal: which side we last applied. Used by toggle().</label>
+            <default>false</default>
+        </entry>
+    </group>
+
+    <group name="AutoSwitch">
+        <entry name="autoSwitchEnabled" type="Bool">
+            <label>Apply themes automatically based on a schedule.</label>
+            <default>false</default>
+        </entry>
+        <entry name="autoSwitchMode" type="Enum">
+            <label>How the schedule is computed.</label>
+            <choices>
+                <choice name="FixedTimes"/>
+                <choice name="SunriseSunset"/>
+            </choices>
+            <default>FixedTimes</default>
+        </entry>
+        <entry name="lightTime" type="String">
+            <label>"HH:MM" — when the day (light) theme starts.</label>
+            <default>07:00</default>
+        </entry>
+        <entry name="darkTime" type="String">
+            <label>"HH:MM" — when the night (dark) theme starts.</label>
+            <default>19:00</default>
+        </entry>
+        <entry name="notifyOnSwitch" type="Bool">
+            <label>Show a desktop notification when the schedule fires.</label>
+            <default>true</default>
+        </entry>
+    </group>
+
+    <group name="Advanced">
+        <entry name="useAdvancedOverrides" type="Bool">
+            <label>Override individual theme components instead of applying a Global Theme.</label>
+            <default>false</default>
+        </entry>
+        <!-- v0.1: per-component override fields are stubbed.
+             When the Advanced tab is fleshed out, add: lightColorScheme,
+             darkColorScheme, lightPlasmaTheme, darkPlasmaTheme,
+             lightWindowDecoration, darkWindowDecoration, lightIconTheme,
+             darkIconTheme, lightCursorTheme, darkCursorTheme,
+             lightWallpaper, darkWallpaper, lightGtkTheme, darkGtkTheme. -->
+    </group>
+</kcfg>

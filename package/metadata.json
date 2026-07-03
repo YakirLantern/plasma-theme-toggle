@@ -1,0 +1,23 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Id": "io.github.yakirlantern.themetoggle",
+        "Name": "Theme Toggle",
+        "Description": "One-click light/dark switching between any two Global Themes, right from your panel. Optional time-of-day auto-switch; per-component switching on the roadmap.",
+        "Icon": "preferences-desktop-theme-global",
+        "Category": "System",
+        "Version": "0.1.0",
+        "Authors": [
+            {
+                "Name": "Yakir Rettig"
+            }
+        ],
+        "License": "GPL-3.0-or-later",
+        "Website": "https://github.com/YakirLantern/plasma-theme-toggle",
+        "BugReportUrl": "https://github.com/YakirLantern/plasma-theme-toggle/issues",
+        "FormFactors": [
+            "desktop"
+        ]
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
