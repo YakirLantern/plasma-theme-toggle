@@ -98,7 +98,6 @@ PlasmoidItem {
 
     function checkSchedule() {
         if (!Plasmoid.configuration.autoSwitchEnabled) return
-        if (Plasmoid.configuration.autoSwitchMode !== 0 /* FixedTimes */) return  // sunrise/sunset stubbed
 
         const lightStart = parseHHMM(Plasmoid.configuration.lightTime)
         const darkStart  = parseHHMM(Plasmoid.configuration.darkTime)
@@ -145,14 +144,15 @@ PlasmoidItem {
 
         readonly property string iconName: {
             switch (Plasmoid.configuration.iconStyle) {
-            case 0: // FollowScheme
-                return Plasmoid.configuration.lastAppliedWasDark ? "preferences-desktop-color" : "preferences-desktop-theme-global"
-            case 1: // SunMoon
-                return Plasmoid.configuration.lastAppliedWasDark ? "weather-clear-night" : "weather-clear"
-            case 2: // YinYang
+            case 0: // YinYang
                 return Qt.resolvedUrl("../icons/themetoggle.svg")
+            case 1: // SunMoon
+                // Show the destination icon: sun when currently dark (so the
+                // next click goes light), moon when currently light (next
+                // click goes dark). This makes the button's purpose obvious.
+                return Plasmoid.configuration.lastAppliedWasDark ? "weather-clear" : "weather-clear-night"
             default:
-                return Plasmoid.configuration.lastAppliedWasDark ? "preferences-desktop-color" : "preferences-desktop-theme-global"
+                return Qt.resolvedUrl("../icons/themetoggle.svg")
             }
         }
 

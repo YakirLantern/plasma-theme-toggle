@@ -11,7 +11,6 @@ KCM.SimpleKCM {
     id: page
 
     property bool   cfg_autoSwitchEnabled
-    property int    cfg_autoSwitchMode
     property string cfg_lightTime
     property string cfg_darkTime
     property bool   cfg_notifyOnSwitch
@@ -39,29 +38,10 @@ KCM.SimpleKCM {
 
         Item { Kirigami.FormData.isSection: true }
 
-        ComboBox {
-            id: modeCombo
-            Kirigami.FormData.label: i18n("Mode:")
-            enabled: cfg_autoSwitchEnabled
-            model: [
-                i18n("Fixed times"),
-                i18n("Sunrise / sunset (coming soon)")
-            ]
-            currentIndex: cfg_autoSwitchMode
-            onActivated: {
-                // Sunrise/sunset is stubbed in v0.1 — refuse to commit it.
-                if (currentIndex === 1) {
-                    currentIndex = 0
-                    return
-                }
-                cfg_autoSwitchMode = currentIndex
-            }
-        }
-
         // ── Light start time ─────────────────────────────────────
         RowLayout {
             Kirigami.FormData.label: i18n("Light theme starts at:")
-            enabled: cfg_autoSwitchEnabled && cfg_autoSwitchMode === 0
+            enabled: cfg_autoSwitchEnabled
             spacing: Kirigami.Units.smallSpacing
 
             SpinBox {
@@ -85,7 +65,7 @@ KCM.SimpleKCM {
         // ── Dark start time ──────────────────────────────────────
         RowLayout {
             Kirigami.FormData.label: i18n("Dark theme starts at:")
-            enabled: cfg_autoSwitchEnabled && cfg_autoSwitchMode === 0
+            enabled: cfg_autoSwitchEnabled
             spacing: Kirigami.Units.smallSpacing
 
             SpinBox {
@@ -121,7 +101,7 @@ KCM.SimpleKCM {
             Layout.topMargin: Kirigami.Units.largeSpacing
             visible: cfg_autoSwitchEnabled
             type: Kirigami.MessageType.Information
-            text: i18n("Schedule is checked every 30 seconds. The widget recovers from suspend automatically — if your laptop sleeps across a switch time, the correct theme is applied on the next tick after wake.")
+            text: i18n("Schedule is checked every 30 seconds. The widget recovers from suspend automatically. If your laptop sleeps across a switch time, the correct theme is applied on the next tick after wake.")
         }
     }
 }

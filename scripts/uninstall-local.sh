@@ -16,3 +16,11 @@ if "$KPT" --type Plasma/Applet --list 2>/dev/null | grep -qF "$ID"; then
 else
     echo ":: $ID is not installed"
 fi
+
+# Remove icon from the icon theme used by Plasma, respecting XDG_DATA_HOME
+DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+ICON_DST="$DATA_HOME/icons/hicolor/scalable/apps/themetoggle.svg"
+if [[ -f "$ICON_DST" ]]; then
+    rm "$ICON_DST"
+    echo ":: Icon removed from $ICON_DST"
+fi

@@ -3,10 +3,10 @@
     "KPlugin": {
         "Id": "io.github.yakirlantern.themetoggle",
         "Name": "Theme Toggle",
-        "Description": "One-click light/dark switching between any two Global Themes, right from your panel. Optional time-of-day auto-switch; per-component switching on the roadmap.",
-        "Icon": "preferences-desktop-theme-global",
+        "Description": "One-click light/dark switching between any two Global Themes, right from your panel. Optional time-of-day auto-switch.",
+        "Icon": "themetoggle",
         "Category": "System",
-        "Version": "0.1.0",
+        "Version": "1.0.0",
         "Authors": [
             {
                 "Name": "Yakir Rettig"

@@ -15,9 +15,4 @@ ConfigModel {
         icon: "view-calendar-time-spent"
         source: "configAutoSwitch.qml"
     }
-    ConfigCategory {
-        name: i18n("Advanced")
-        icon: "configure"
-        source: "configAdvanced.qml"
-    }
 }

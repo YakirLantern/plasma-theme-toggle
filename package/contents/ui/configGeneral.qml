@@ -16,6 +16,10 @@ KCM.SimpleKCM {
     property string cfg_lightTheme
     property string cfg_darkTheme
     property int    cfg_iconStyle
+    property string cfg_yinDarkColor
+    property string cfg_yinLightColor
+    property string cfg_yangDarkColor
+    property string cfg_yangLightColor
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -47,25 +51,72 @@ KCM.SimpleKCM {
         ComboBox {
             Kirigami.FormData.label: i18n("Icon style:")
             model: [
-                i18n("Follow current scheme"),
-                i18n("Sun / moon"),
-                i18n("Yin-yang")
+                i18n("Yin-yang"),
+                i18n("Sun / moon")
             ]
             currentIndex: cfg_iconStyle
             onActivated: cfg_iconStyle = currentIndex
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+            visible: page.cfg_iconStyle === 0
+            Kirigami.FormData.label: i18n("Dark mode colors")
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Yin (dark):")
+            text: cfg_yinDarkColor
+            placeholderText: "#1a1a2e"
+            Layout.fillWidth: true
+            onAccepted: cfg_yinDarkColor = text
+            visible: page.cfg_iconStyle === 0
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Yang (dark):")
+            text: cfg_yangDarkColor
+            placeholderText: "#f5f5f5"
+            Layout.fillWidth: true
+            onAccepted: cfg_yangDarkColor = text
+            visible: page.cfg_iconStyle === 0
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+            visible: page.cfg_iconStyle === 0
+            Kirigami.FormData.label: i18n("Light mode colors")
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Yin (light):")
+            text: cfg_yinLightColor
+            placeholderText: "#f5f5f5"
+            Layout.fillWidth: true
+            onAccepted: cfg_yinLightColor = text
+            visible: page.cfg_iconStyle === 0
+        }
+
+        TextField {
+            Kirigami.FormData.label: i18n("Yang (light):")
+            text: cfg_yangLightColor
+            placeholderText: "#1a1a2e"
+            Layout.fillWidth: true
+            onAccepted: cfg_yangLightColor = text
+            visible: page.cfg_iconStyle === 0
         }
     }
 
     // ── Theme enumeration ─────────────────────────────────────────
     //
-    // Pure-QML option (a) per DESIGN.md: shell out to
+    // Pure-QML option (a): shell out to
     //   plasma-apply-lookandfeel --list
     // and parse the output. Each line looks like:
     //   * org.kde.breeze.desktop (current)
     //     org.kde.breezedark.desktop
     // Strip the leading marker, treat the id as both the value and a
     // human-readable display (we don't have a Name without KPackage —
-    // good enough for v0.1; the id is reverse-DNS and recognisable).
+    // good enough for a first release; the id is reverse-DNS and recognisable).
 
     ListModel {
         id: themeModel
