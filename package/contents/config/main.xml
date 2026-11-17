@@ -18,15 +18,6 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <label>Look-and-Feel package id for the dark state.</label>
             <default>org.kde.breezedark.desktop</default>
         </entry>
-        <entry name="clickAction" type="Enum">
-            <label>What clicking the widget does.</label>
-            <choices>
-                <choice name="Toggle"/>
-                <choice name="Menu"/>
-                <choice name="Cycle"/>
-            </choices>
-            <default>Toggle</default>
-        </entry>
         <entry name="iconStyle" type="Enum">
             <label>Which icon the panel widget shows.</label>
             <choices>
@@ -34,7 +25,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
                 <choice name="SunMoon"/>
                 <choice name="YinYang"/>
             </choices>
-            <default>FollowScheme</default>
+            <default>YinYang</default>
         </entry>
         <entry name="lastAppliedWasDark" type="Bool">
             <label>Internal: which side we last applied. Used by toggle().</label>

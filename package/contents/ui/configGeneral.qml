@@ -15,7 +15,6 @@ KCM.SimpleKCM {
     // Declared so they're picked up by the binding machinery.
     property string cfg_lightTheme
     property string cfg_darkTheme
-    property int    cfg_clickAction
     property int    cfg_iconStyle
 
     Kirigami.FormLayout {
@@ -44,17 +43,6 @@ KCM.SimpleKCM {
         }
 
         Item { Kirigami.FormData.isSection: true }
-
-        ComboBox {
-            Kirigami.FormData.label: i18n("Click action:")
-            model: [
-                i18n("Toggle between light and dark"),
-                i18n("Show menu"),
-                i18n("Cycle (light → dark → …)")
-            ]
-            currentIndex: cfg_clickAction
-            onActivated: cfg_clickAction = currentIndex
-        }
 
         ComboBox {
             Kirigami.FormData.label: i18n("Icon style:")

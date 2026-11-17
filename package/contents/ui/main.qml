@@ -12,7 +12,15 @@ import org.kde.notification
 PlasmoidItem {
     id: root
 
-    preferredRepresentation: compactRepresentation
+    switchWidth: 32
+    switchHeight: 32
+    Layout.minimumWidth: 32
+    Layout.minimumHeight: 32
+    Layout.preferredWidth: 32
+    Layout.preferredHeight: 32
+
+    expanded: false
+    activationTogglesExpanded: false
     toolTipMainText: i18n("Theme Toggle")
     toolTipSubText: Plasmoid.configuration.lastAppliedWasDark
         ? i18n("Currently dark — click to switch to light")
@@ -120,30 +128,68 @@ PlasmoidItem {
     }
 
     // ── Compact representation (panel button) ──────────────────────
+    //
+    // Wrapped in an Item that carries explicit size hints. Without these
+    // the panel allocates a 0x0 cell (a bare MouseArea has no implicit
+    // size), which renders the widget invisible and makes it unclickable.
 
-    compactRepresentation: MouseArea {
-        id: rootArea
-        hoverEnabled: true
-        acceptedButtons: Qt.LeftButton
+    compactRepresentation: Item {
+        id: compactRoot
+
+        width: 32
+        height: 32
+        Layout.minimumWidth: 32
+        Layout.minimumHeight: 32
+        Layout.preferredWidth: 32
+        Layout.preferredHeight: 32
 
         readonly property string iconName: {
             switch (Plasmoid.configuration.iconStyle) {
-            case 1: return Plasmoid.configuration.lastAppliedWasDark ? "weather-clear-night" : "weather-clear"
-            case 2: return Qt.resolvedUrl("../icons/themetoggle.svg")
-            case 0:
+            case 0: // FollowScheme
+                return Plasmoid.configuration.lastAppliedWasDark ? "preferences-desktop-color" : "preferences-desktop-theme-global"
+            case 1: // SunMoon
+                return Plasmoid.configuration.lastAppliedWasDark ? "weather-clear-night" : "weather-clear"
+            case 2: // YinYang
+                return Qt.resolvedUrl("../icons/themetoggle.svg")
             default:
-                return Plasmoid.configuration.lastAppliedWasDark
-                    ? "preferences-desktop-color"
-                    : "preferences-desktop-theme-global"
+                return Plasmoid.configuration.lastAppliedWasDark ? "preferences-desktop-color" : "preferences-desktop-theme-global"
             }
         }
 
         Kirigami.Icon {
             anchors.fill: parent
-            source: rootArea.iconName
-            active: rootArea.containsMouse
+            source: compactRoot.iconName
+            active: rootMouse.containsMouse
         }
 
-        onClicked: root.toggle()
+        MouseArea {
+            id: rootMouse
+            anchors.fill: parent
+            hoverEnabled: true
+            acceptedButtons: Qt.LeftButton
+            onClicked: root.toggle()
+        }
+    }
+
+    fullRepresentation: Item {
+        id: fullRoot
+
+        Layout.minimumWidth: 200
+        Layout.minimumHeight: 64
+        Layout.preferredWidth: 200
+        Layout.preferredHeight: 64
+
+        Text {
+            anchors.centerIn: parent
+            text: i18n("Theme Toggle")
+            font.pixelSize: 14
+            color: Kirigami.Theme.textColor
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            acceptedButtons: Qt.LeftButton
+            onClicked: root.toggle()
+        }
     }
 }
