@@ -65,6 +65,3 @@ Then add the widget via Plasma's *Add Widgets* dialog (search "Theme Toggle"). T
 - Two icon styles: Yin-Yang, Sun-Moon
 - Configurable click action and per-mode color customization for Yin-Yang
 
-### [1.0.1] — Patch release
-
-- [Placeholder]

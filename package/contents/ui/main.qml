@@ -23,8 +23,8 @@ PlasmoidItem {
     activationTogglesExpanded: false
     toolTipMainText: i18n("Theme Toggle")
     toolTipSubText: Plasmoid.configuration.lastAppliedWasDark
-        ? i18n("Currently dark — click to switch to light")
-        : i18n("Currently light — click to switch to dark")
+        ? i18n("DARK MODE ON (click to switch to light")
+        : i18n("LIGHT MODE ON (click to switch to dark")
 
     // ── Theme application ──────────────────────────────────────────
 
